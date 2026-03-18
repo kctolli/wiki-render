@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio';
 
 export default async function getWikiData(page: string) {
   const baseUrl = "https://wiki-render.vercel.app/";
-  const res = await fetch(`${baseUrl}/api/wiki?page=${page}`);
+  const res = await fetch(`${baseUrl}/api?page=${page}`);
   const html = await res.text();
 
   const $ = cheerio.load(html);
