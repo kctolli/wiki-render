@@ -5,7 +5,7 @@ export async function generateMetadata({ searchParams }: any): Promise<any> {
   const { page } = await searchParams;
   
   return {
-    title: `Doku Render - ${page || 'Home'}`,
+    title: `Doku Render (${page || 'Home'})`,
     icons: {
       icon: '/wikiIcon.png',
     },
