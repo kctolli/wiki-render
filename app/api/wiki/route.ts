@@ -4,8 +4,6 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const page = searchParams.get('page');
 
-  console.log("API received request for page:", page); // DEBUG LOG
-
   if (!page || page === "undefined") {
     return NextResponse.json({ error: "Page parameter is invalid" }, { status: 400 });
   }
@@ -38,7 +36,6 @@ export async function GET(request: NextRequest) {
       status: 200,
       headers: { 'Content-Type': 'text/html' },
     });
-
   } catch (error) {
     console.error("Doku Error: ", error);
     return NextResponse.json({ error: "Doku Error" }, { status: 500 });
