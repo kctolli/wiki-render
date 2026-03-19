@@ -4,25 +4,13 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const page = searchParams.get('page');
 
-  if (!page || page === "undefined") {
-    return NextResponse.json({ error: "Page parameter is invalid" }, { status: 400 });
-  }
+  const activePage = page || "start"; 
 
-  const wikiUrl = `https://wiki.ktolliver.org/doku.php?id=${page}&do=export_xhtml&`;
-
-  const username = process.env.DOKU_USER;
-  const password = process.env.DOKU_PASSWORD;
-
-  if (!username || !password) {
-    return NextResponse.json({ error: "Server configuration missing" }, { status: 500 });
-  }
-
-  const auth = Buffer.from(`${username}:${password}`).toString('base64');
+  const wikiUrl = `https://wiki.ktolliver.org/api/wiki.php?page=${activePage}`;
 
   try {
     const response = await fetch(wikiUrl, {
       method: 'GET',
-      headers: { 'Authorization': `Basic ${auth}` }
     });
 
     if (!response.ok) {

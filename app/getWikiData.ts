@@ -1,8 +1,7 @@
 import * as cheerio from 'cheerio';
 
 export default async function getWikiData(page: string) {
-  const baseUrl = "https://wiki-render.vercel.app/";
-  const res = await fetch(`${baseUrl}/api?page=${page}`);
+  const res = await fetch(`https://wiki.ktolliver.org/api/wiki.php?page=${page}`);
   const html = await res.text();
 
   const $ = cheerio.load(html);
