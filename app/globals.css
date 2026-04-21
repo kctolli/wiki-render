@@ -8,7 +8,7 @@ h1 {
   text-align: center;        
 }
 
-.wiki, .wiki * 
+.wiki, .wiki *,
 .wiki-container,
 .wiki-container *{
     color: #000000 !important;
